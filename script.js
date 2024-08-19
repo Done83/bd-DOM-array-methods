@@ -31,6 +31,12 @@ const doubleMoney = () => {
   updateDOM();
 };
 
+// Sort by richest
+const sortByRichest = () => {
+  data.sort((a, b) => b.money - a.money);
+  updateDOM();
+};
+
 // Add new object to data array
 const addData = (obj) => {
   data.push(obj);
@@ -56,6 +62,7 @@ const updateDOM = (providedData = data) => {
 // Format number as money
 const formatMoney = (amount) => `$${(amount / 100).toFixed(2)}`;
 
-// event listener for adding user
+// event listeners
 addUserBtn.addEventListener("click", getRandomUser);
 doubleBtn.addEventListener("click", doubleMoney);
+sortBtn.addEventListener("click", sortByRichest);
