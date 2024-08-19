@@ -3,7 +3,7 @@ const addUserBtn = document.getElementById("add-user");
 const doubleBtn = document.getElementById("double");
 const showMillionaiersBtn = document.getElementById("show-millionaires");
 const sortBtn = document.getElementById("sort");
-const calculateWealthBtn = document.getElementById("calculate_wealth");
+const calculateWealthBtn = document.getElementById("calculate-wealth");
 
 let data = [];
 
@@ -45,6 +45,16 @@ const showMillionaiers = () => {
   updateDOM();
 };
 
+// Calculate wealth
+const calculateWealth = () => {
+  const wealth = data.reduce((acc, user) => (acc += user.money), 0);
+  const wealthEl = document.createElement("div");
+  wealthEl.innerHTML = `<h3>Total Wealth: <strong>${formatMoney(
+    wealth
+  )}</strong></h3>`;
+  main.appendChild(wealthEl);
+};
+
 // Add new object to data array
 const addData = (obj) => {
   data.push(obj);
@@ -75,3 +85,4 @@ addUserBtn.addEventListener("click", getRandomUser);
 doubleBtn.addEventListener("click", doubleMoney);
 sortBtn.addEventListener("click", sortByRichest);
 showMillionaiersBtn.addEventListener("click", showMillionaiers);
+calculateWealthBtn.addEventListener("click", calculateWealth);
