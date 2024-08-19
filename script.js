@@ -25,4 +25,27 @@ const getRandomUser = async () => {
 // Add new object to data array
 const addData = (obj) => {
   data.push(obj);
+
+  updateDOM();
 };
+
+// Update DOM function
+const updateDOM = (providedData = data) => {
+  // Clear main div
+  main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>";
+
+  providedData.forEach((item) => {
+    const element = document.createElement("div");
+    element.classList.add("person");
+    element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(
+      item.money
+    )}`;
+    main.appendChild(element);
+  });
+};
+
+// Format number as money
+const formatMoney = (amount) => `$${(amount / 100).toFixed(2)}`;
+
+// event listener for adding user
+addUserBtn.addEventListener("click", getRandomUser);
